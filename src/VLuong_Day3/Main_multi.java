@@ -12,15 +12,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-public class Main implements Runnable {
-	
-	private String browser;
-    private WebDriver driver;
-    
-    public Main(String browser) {
-		this.browser = browser;
-	}
-	
+public class Main_multi{
+//	private String browser;
+//    private WebDriver driver;
     
 	public static void main(String[] args) {
 		ChromeOptions option = new ChromeOptions();
@@ -34,34 +28,9 @@ public class Main implements Runnable {
 		Process(FFDr);
 		Process(EdgeDr);
 		
-		// Multi run all Browser at the same time
-//		Thread EdgeDr = new Thread(new Main("Edge"));
-//		Thread FFDr = new Thread(new Main("FireFox"));
-//		Thread ChromeDr = new Thread(new Main("Chrome"));
-//		EdgeDr.start();
-//		FFDr.start();
-//		ChromeDr.start();
+
 	}
 	
-	@Override
-	public void run() {
-		ChromeOptions option = new ChromeOptions();
-		option.addArguments("--remote-allow-origins=*");
-		
-		// TODO Auto-generated method stub
-		if (browser.equals("FireFox")) {
-            driver = new FirefoxDriver();
-            Process(driver);
-        } else if (browser.equals("Edge")) {
-            driver = new EdgeDriver();
-            Process(driver);
-        } else if (browser.equals("Chrome")) {
-            driver = new ChromeDriver(option);
-            Process(driver);
-        } else {
-            throw new IllegalArgumentException("Invalid browser: " + browser);
-        }
-	}
 	
 	public static void Process(WebDriver curFdr) {
 		curFdr.manage().window().maximize();
@@ -152,7 +121,6 @@ public class Main implements Runnable {
 			
 		WebElement userPass = curFdr.findElement(By.xpath(xpathPass));
 		userPass.sendKeys(PASS);
-		
 		WebElement Login = curFdr.findElement(By.xpath(xpathLog));
 		Login.click();
 		
