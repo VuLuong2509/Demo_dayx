@@ -47,9 +47,16 @@ public class Exercise_Day5 {
 		// Select dropdown and print the result
 		WebElement SelectDrd = curDriver.findElement(By.xpath(xpathDrdown));
 		Select seDrd = new Select(SelectDrd);
-		seDrd.selectByVisibleText("Selenium RC");
-		System.out.println(seDrd.getFirstSelectedOption().getText());
+//		seDrd.selectByVisibleText("Selenium RC");
+//		System.out.println(seDrd.getFirstSelectedOption().getText());
 		
+		try {
+			seDrd.selectByVisibleText("Selenium RC");
+			System.out.println(seDrd.getFirstSelectedOption().getText());
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error");
+		}
 		
 		curDriver.get(URL2);
 		// Exercise iframe
