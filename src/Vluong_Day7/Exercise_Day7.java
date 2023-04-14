@@ -19,7 +19,7 @@ public class Exercise_Day7 {
 	public static void main(String[] args) {
 		Exercise_Day7 Ex = new Exercise_Day7();
 		Page = new CommonServicePage();
-		Ex.Process("chrome", "Products Comparison List - Magento Commerce");	
+		Ex.Process("edge", "Products Comparison List - Magento Commerce");	
 	}
 	
 	public void Process(String browser,String title) {
@@ -60,7 +60,7 @@ public class Exercise_Day7 {
 		Set<String> windows = Driver.getWindowHandles();
 		
 		for (String str : windows) {
-			Driver.switchTo().window(str); //ma windown
+			Driver.switchTo().window(str); 
 			System.out.println(str);
 			if (Driver.getTitle().equalsIgnoreCase(title)) {
 				break;

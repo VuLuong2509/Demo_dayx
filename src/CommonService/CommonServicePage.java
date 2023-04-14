@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CommonServicePage {
@@ -19,7 +20,9 @@ public class CommonServicePage {
 		} else if(browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
 		} else {
-			driver = new EdgeDriver();
+			EdgeOptions option = new EdgeOptions();
+			option.addArguments("--remote-allow-origins=*");
+			driver = new EdgeDriver(option);
 		}
 
 
