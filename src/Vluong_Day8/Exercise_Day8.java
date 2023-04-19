@@ -17,11 +17,11 @@ public class Exercise_Day8 {
 		Exercise_Day8 Ex = new Exercise_Day8();
 		page = new CommonServicePage();
 		//lesson 1
-		Ex.DragCircle();
+		//Ex.DragCircle();
 		//lesson 2
 		Ex.grid();
 		//lesson 3
-		Ex.sendImage();
+		//Ex.sendImage();
 	}
 	
 	//lesson 1
@@ -31,7 +31,6 @@ public class Exercise_Day8 {
 		//xpath
 		String xpathMiniCr = "//div[@id='draggable']";
 		String xpathLagCr = "//div[@id='droptarget']";
-		
 		//Action
 		WebDriver driver;
 		CommonServicePage cmSerive = new CommonServicePage();
@@ -76,10 +75,16 @@ public class Exercise_Day8 {
 		Random ran = new Random();
 		Integer stRan1 = ran.nextInt(12)+1;
 		Integer stRan2 = ran.nextInt(12)+1;
-		if (stRan1 == stRan2) {
-			stRan1 = ran.nextInt(12)+1;
-		} else {
-		}
+//		
+//		if (stRan1 == stRan2) {
+//			ran = new Random();
+//			stRan1 = ran.nextInt(2)+1;
+//		}
+		while(stRan1 == stRan2) {
+			ran = new Random();
+			stRan1 = ran.nextInt(12)+1;			
+		};
+		
 		System.out.println(stRan1);
 		System.out.println(stRan2);
 		WebElement moveStran1 = driver.findElement(By.xpath(String.format(xpathst1, stRan1)));
