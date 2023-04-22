@@ -1,5 +1,7 @@
 package Vluong_Day9;
 
+import java.io.File;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,8 +14,8 @@ public class Excerise_Day9 {
 	public static void main(String[] args) {
 		Excerise_Day9 Ex = new Excerise_Day9();
 		page = new CommonServicePage();
-		Ex.SendMulImage();
-		
+		//Ex.SendMulImage();
+		Ex.downLoadimage();
 	}
 	
 public void SendMulImage(){
@@ -35,8 +37,8 @@ public void SendMulImage(){
 	
 	
 	System.out.println(currentDir);
-	
-	btnadd.sendKeys("D:\\Automation Selenium\\Exercise_Day3\\ImageLibraries\\meme.jpg \n D:\\Automation Selenium\\Exercise_Day3\\ImageLibraries\\unnamed.png \n D:\\Automation Selenium\\Exercise_Day3\\ImageLibraries\\nani.jpg");
+	btnadd.sendKeys(currentDir + upload1 + "\n" + currentDir + upload2 + "\n" + currentDir + upload3);
+	//btnadd.sendKeys("D:\\Automation Selenium\\Exercise_Day3\\ImageLibraries\\meme.jpg \n D:\\Automation Selenium\\Exercise_Day3\\ImageLibraries\\unnamed.png \n D:\\Automation Selenium\\Exercise_Day3\\ImageLibraries\\nani.jpg");
 	//btnadd.sendKeys("C:\\Users\\VuLuong\\Desktop\\meme.jpg \n C:\\Users\\VuLuong\\Desktop\\unnamed.png \n C:\\Users\\VuLuong\\Desktop\\nani.jpg");
 	
 	
@@ -44,10 +46,34 @@ public void SendMulImage(){
 	}
 
 public void downLoadimage() {
+	String url = "https://the-internet.herokuapp.com/download";
+	//xpath
+	String downLoad = "//a[text()='some-file.txt']";
 	
+	WebDriver driver;
+	CommonServicePage cmSerive = new CommonServicePage();
+	driver = cmSerive.RunDriver("firefox", url);
 	
+	WebElement atDown = driver.findElement(By.xpath(downLoad));
+	String filenamest1 = atDown.getText();
+	atDown.click();
+	//Load folder ImageLibraries
+	File folder = new File(System.getProperty("user.dir")+ File.separator + "ImageLibraries");
+	File[] listItemOffile = folder.listFiles();
 	
+	for (File listOfFile : listItemOffile) {
+		if (listOfFile.isFile()) {
+			String fileName = listOfFile.getName();
+			System.out.println("File " + fileName);
+			if (fileName.equalsIgnoreCase(filenamest1)) {
+				System.out.println("Found....");
+				listOfFile.deleteOnExit();
+				break;
+			}
+		}
+	}
 	
+	driver.quit();
 }
 
 }
