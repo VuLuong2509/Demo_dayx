@@ -31,7 +31,7 @@ public class Excerise_Day10 {
 
 		WebElement clickBtn = driver.findElement(By.xpath(xpathbtnDis));
 				
-		js.executeScript("arguments[0].click();", clickBtn);
+		
 		
 		
 		try {
@@ -40,8 +40,9 @@ public class Excerise_Day10 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		String checkbtn = (String) js.executeScript("return arguments[0].value", clickBtn);
-//		System.out.println(checkbtn);
+		js.executeScript("arguments[0].click();", clickBtn);
+		String checkbtn = (String) js.executeScript("return arguments[0].localName", clickBtn);
+		System.out.println(checkbtn);
 		
 		
 		
@@ -52,10 +53,10 @@ public class Excerise_Day10 {
 		System.out.println(checkF);
 		
 		
-//		WebElement messText = driver.findElement(By.xpath(xpathmess));
-//		String test = messText.getText();
-//		String checkmes= (String) js.executeScript("return arguments[0].value", messText);
-//		System.out.println(test);
+		WebElement messText = driver.findElement(By.xpath(xpathmess));
+		String test = messText.getText();
+		String checkmes= (String) js.executeScript("return arguments[0].textContent", messText);
+		System.out.println(test);
 		
 
 		driver.quit();
